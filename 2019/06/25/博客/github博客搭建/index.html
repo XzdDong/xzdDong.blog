@@ -142,13 +142,6 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -157,6 +150,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -214,10 +214,41 @@
 
                 <p>参考<a href="https://godweiyang.com/2018/04/13/hexo-blog" target="_blank" rel="noopener">博客</a></p>
 <p>[TOC]</p>
-<h1><span id="安装nodejs">安装node.js</span></h1><h1><span id="安装git">安装Git</span></h1><p>然后输入<code>hexo new post &quot;article title&quot;</code>，新建一篇文章。</p>
-<p>然后打开<code>D:\study\program\blog\source\_posts</code>的目录，可以发现下面多了一个文件夹和一个<code>.md</code>文件，一个用来存放你的图片等数据，另一个就是你的文章文件啦。</p>
-<p>编写完markdown文件后，根目录下输入<code>hexo g</code>生成静态网页，然后输入<code>hexo s</code>可以本地预览效果，最后输入<code>hexo d</code>上传到github上。这时打开你的github.io主页就能看到发布的文章啦。</p>
-<p><img src=".\github博客搭建\1.png" alt="1561469936749"></p>
+<h1 id="安装nodejs"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h1><p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript运行环境。 Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。</p>
+<p>下载64位9.11.1版本<a href="https://nodejs.org/dist/v9.11.1/node-v9.11.1-x64.msi" target="_blank" rel="noopener">Node.js</a></p>
+<p>默认安装后在命令行输入<code>node -v</code>和<code>npm -v</code>，如果出现版本号，那么就安装成功了。</p>
+<h1 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h1><p>安装分布式版本控制工具Git，<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git下载地址</a>。</p>
+<p>之后下建立自己的博客文件夹，比如<code>f/myBlog</code>。在根目录下右键<code>Git bash here</code>打开git命令行界面。</p>
+<p>定位到该目录下，输入<code>npm install hexo-cli -g</code>安装Hexo。会有几个报错，无视它就行。</p>
+<p>然后输入<code>npm install hexo --save</code>继续安装。安装完后输入<code>hexo -v</code>验证是否安装成功。</p>
+<p>输入<code>hexo init</code>初始化文件夹，接着输入<code>npm install</code>安装必备的组件。</p>
+<p>输入<code>hexo g</code>生成静态网页，然后输入<code>hexo s</code>打开本地服务器，然后浏览器打开<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>，可以看到博客。(默认端口4000被占用的话可以<code>hexo s -p8081</code>指定8081端口)</p>
+<p>在git bash 中输入设置git的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;用户名，&quot;</span><br><span class="line">git config --global user.email &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
+<p>生成密钥SSH KEY</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
+<p>输入<code>eval &quot;$(ssh-agent -s)&quot;</code>，添加密钥到ssh-agent。</p>
+<p>再输入<code>ssh-add ~/.ssh/id_rsa</code>，添加生成的SSH key到ssh-agent。</p>
+<p>打开<a href="https://github.com/" target="_blank" rel="noopener">github</a>，在头像下面点击<code>settings</code>，再点击<code>SSH and GPG keys</code>，新建一个SSH。</p>
+<p>打开<code>C:\Users\Administrator\.ssh\id_rsa.pub</code>，注意是隐藏文件夹，将其中的内容复制到新建的SSH中。</p>
+<p>输入<code>ssh -T git@github.com</code>，如果如下图所示，出现你的用户名，那就成功了。</p>
+<p><img src="/2019/06/25/博客/github博客搭建/2.png" alt="1561530631939"></p>
+<h1 id="设置github仓库"><a href="#设置github仓库" class="headerlink" title="设置github仓库"></a>设置github仓库</h1><p>首先注册github账号，新建一个仓库，名字为<code>[账户名].github.io</code>。</p>
+<h1 id="发布一篇文章"><a href="#发布一篇文章" class="headerlink" title="发布一篇文章"></a>发布一篇文章</h1><h2 id="通过hexo-new-post新建"><a href="#通过hexo-new-post新建" class="headerlink" title="通过hexo new post新建"></a>通过hexo new post新建</h2><p>然后输入<code>hexo new post &quot;article title&quot;</code>，新建一篇文章。</p>
+<p>然后打开<code>.\source\_posts</code>的目录，下面多了一个文件夹和一个<code>.md</code>文件，一个用来存放你的图片等数据，另一个就是你的文章文件。（前提是在<code>_config/yml</code>中设置<code>post_asset_folder: true</code>用于支持本地图片上传和markdown图片路径转换）</p>
+<p>编写完markdown文件后，</p>
+<ol>
+<li>根目录下输入<code>hexo g</code>生成静态网页</li>
+<li>然后输入<code>hexo s -p8081</code>后访问<code>localhost:8081</code>可以本地预览效果。</li>
+<li>最后输入<code>hexo d</code>上传到github上，打开github.io主页就能看到发布的文章。</li>
+</ol>
+<h2 id="自己创建"><a href="#自己创建" class="headerlink" title="自己创建"></a>自己创建</h2><p>可以自己新建一个markdown文件，放在<code>_post</code>的任意文件夹下，即可以自己新建目录用于分类放置各个类别的文章，不影响文章的发布，如果需要插入图片就需要自己新建同名文件夹，并在文件夹内放入需要的图片。</p>
+<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>本地图片的markdown语法如下</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/img.jpg</span>)</span><br><span class="line">![<span class="string">Alt text</span>](<span class="link">/path/img.jpg "Optional title"</span>)</span><br></pre></td></tr></table></figure>
+<p>Alt text可转换为html中<img>标签中的alt属性，在图片无法显示的时候将代替显示对应的文本内容，小括号中可以输入绝对路径和相对路径，就需要插入<code>![test](github博客搭建/1.png)</code>.hexo-assert-image将做路径转换，路径前输入<code>./</code>会造成路径转换错误，输入可选标题也会无法识别，虽然markdown可以识别。</p>
+<p>插入图片</p>
+<p><img src="/2019/06/25/博客/github博客搭建/1.png" alt="test"></p>
+<p>使用typora编辑器时可以设置 <code>编辑-&gt;图片工具-&gt;设置图片根目录</code>，这样插入时只需要输入图片名称如<code>![test](1.png)</code>。设置后可以发现在horizonal rules也就是文章最前面的设置中出现了<code>typora-root-url: github博客搭建</code>。</p>
 
                 
 
