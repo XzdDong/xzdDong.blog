@@ -149,14 +149,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -249,7 +249,9 @@
 <p>插入图片</p>
 <p><img src="/2019/06/25/博客/github博客搭建/1.png" alt="test"></p>
 <p>使用typora编辑器时可以设置 <code>编辑-&gt;图片工具-&gt;设置图片根目录</code>，这样插入时只需要输入图片名称如<code>![test](1.png)</code>。设置后可以发现在horizonal rules也就是文章最前面的设置中出现了<code>typora-root-url: github博客搭建</code>。</p>
-<h2 id="wechat图片"><a href="#wechat图片" class="headerlink" title="wechat图片"></a>wechat图片</h2><p>在浏览器中调试时可以发现在原主题中有对于icon_wechat.png（应该是微信图标）的请求并且我之前删掉了这个图片，导致请求不到，加载也很慢。于是在主题根目录下<code>layout/layout.ejs</code>中注释掉line24。</p>
+<h2 id="wechat图片"><a href="#wechat图片" class="headerlink" title="wechat图片"></a>wechat图片</h2><p>在浏览器中调试时可以发现在原主题中有对于icon_wechat.png（应该是微信图标）的请求并且我之前删掉了这个图片，导致请求不到，加载也很慢。</p>
+<p><img src="/2019/06/25/博客/github博客搭建/3.png" alt="1561539276211"></p>
+<p>于是在主题根目录下<code>layout/layout.ejs</code>中注释掉line24。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- img src="&lt;%= config['url'] %&gt;&lt;%= config['root'] %&gt;img/icon_wechat.png" width="0" height="0" / --&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="目录不显示"><a href="#目录不显示" class="headerlink" title="目录不显示"></a>目录不显示</h2><p>一是markdown中的toc标签不识别，生成了文本。二是博客主题中contents不显示，但是生成的html文件是正常的。目前没有找到原因。</p>
 
