@@ -149,14 +149,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -214,6 +214,7 @@
 
                 <p>参考<a href="https://godweiyang.com/2018/04/13/hexo-blog" target="_blank" rel="noopener">博客</a></p>
 <p>[TOC]</p>
+<p><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>是一个使用Node.js开发的静态编译博客框架。</p>
 <h1 id="安装nodejs"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h1><p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript运行环境。 Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型。</p>
 <p>下载64位9.11.1版本<a href="https://nodejs.org/dist/v9.11.1/node-v9.11.1-x64.msi" target="_blank" rel="noopener">Node.js</a></p>
 <p>默认安装后在命令行输入<code>node -v</code>和<code>npm -v</code>，如果出现版本号，那么就安装成功了。</p>
@@ -253,7 +254,10 @@
 <p><img src="/2019/06/25/博客/github博客搭建/3.png" alt="1561539276211"></p>
 <p>于是在主题根目录下<code>layout/layout.ejs</code>中注释掉line24。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- img src="&lt;%= config['url'] %&gt;&lt;%= config['root'] %&gt;img/icon_wechat.png" width="0" height="0" / --&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="目录不显示"><a href="#目录不显示" class="headerlink" title="目录不显示"></a>目录不显示</h2><p>一是markdown中的toc标签不识别，生成了文本。二是博客主题中contents不显示，但是生成的html文件是正常的。目前没有找到原因。</p>
+<h2 id="目录不显示"><a href="#目录不显示" class="headerlink" title="目录不显示"></a>目录不显示</h2><p>一是markdown中的toc标签不识别，生成了文本。</p>
+<p>二是博客主题中contents不显示，但是生成的html文件是正常的，是由于文章开题的horizonal rule中没有添加<code>catelog: ture</code>，可能导致了渲染时忽略了目录。</p>
+<p>如果出现目录锚点未定义，可能是由于版本问题按新的格式解析标题，打开 <strong>node_modules/hexo-toc/lib/filter.js</strong>  修改line 28 to 31 如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$title.attr(&apos;id&apos;, id);</span><br><span class="line">// $title.children(&apos;a&apos;).remove();</span><br><span class="line">// $title.html( &apos;&lt;span id=&quot;&apos; + id + &apos;&quot;&gt;&apos; + $title.html() + &apos;&lt;/span&gt;&apos; );</span><br><span class="line">// $title.removeAttr(&apos;id&apos;);</span><br></pre></td></tr></table></figure>
 
                 
 
@@ -261,10 +265,6 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                    
-                        <li class="next">
-                            <a href="/2019/05/26/1/hexo/" data-toggle="tooltip" data-placement="top" title="new hexo">Next Post &rarr;</a>
-                        </li>
                     
                 </ul>
 
@@ -283,6 +283,17 @@
             
             <!-- Tabe of Content -->
             <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#安装nodejs"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">安装Node.js</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#本地配置"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">本地配置</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#设置github仓库"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">设置github仓库</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#发布一篇文章"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">发布一篇文章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#通过hexo-new-post新建"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">通过hexo new post新建</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#自己创建"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">自己创建</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一些问题"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">一些问题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#插入图片"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">插入图片</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#wechat图片"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">wechat图片</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#目录不显示"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">目录不显示</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
 
                 
             <!-- Sidebar Container -->
