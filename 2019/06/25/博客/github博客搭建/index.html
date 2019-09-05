@@ -258,6 +258,7 @@
 <p>二是博客主题中contents不显示，但是生成的html文件是正常的，是由于文章开题的horizonal rule中没有添加<code>catelog: ture</code>，可能导致了渲染时忽略了目录。</p>
 <p>如果出现目录锚点未定义，可能是由于版本问题按新的格式解析标题，打开 <strong>node_modules/hexo-toc/lib/filter.js</strong>  修改line 28 to 31 如下。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$title.attr(&apos;id&apos;, id);</span><br><span class="line">// $title.children(&apos;a&apos;).remove();</span><br><span class="line">// $title.html( &apos;&lt;span id=&quot;&apos; + id + &apos;&quot;&gt;&apos; + $title.html() + &apos;&lt;/span&gt;&apos; );</span><br><span class="line">// $title.removeAttr(&apos;id&apos;);</span><br></pre></td></tr></table></figure>
+<p>无法</p>
 
                 
 
@@ -266,7 +267,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/08/08/使用Endnote新建style/" data-toggle="tooltip" data-placement="top" title="使用Endnote新建style">&larr; Previous Post</a>
+                            <a href="/2019/07/07/ESP9266调试问题/" data-toggle="tooltip" data-placement="top" title="ESP9266调试问题">&larr; Previous Post</a>
                         </li>
                     
                     
