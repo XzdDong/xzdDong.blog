@@ -86,6 +86,10 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                            
+                              <a class="tag" href="/tags/#学习笔记" title="学习笔记">学习笔记</a>
+                            
                         </div>
                         <h1>C++Primer学习笔记</h1>
                         <h2 class="subheading"></h2>
@@ -138,14 +142,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -208,12 +212,86 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h2 id="内联"><a href="#内联" class="headerlink" title="内联"></a>内联</h2><h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><ul>
+<li><p>内联函数声明也就是函数声明前加上关键字<code>inline</code>。</p>
+</li>
+<li><p>定义在类内部的成员函数自动inline。</p>
+</li>
+</ul>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>旨在告诉编译器希望编译时以内联的形式展开代码而非进行函数调用，以节省函数调用开销，而编译器可以选择忽略这一请求。一般适用于规模小、调用频繁、流程直接的函数。</p>
+<h2 id="常量成员函数"><a href="#常量成员函数" class="headerlink" title="常量成员函数"></a>常量成员函数</h2><h3 id="形式"><a href="#形式" class="headerlink" title="形式"></a>形式</h3><p>在函数参数列表后加<code>const</code>关键字</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>定义：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> Sales_data::avg_price() <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(units_sold)&#123;</span><br><span class="line">        <span class="keyword">return</span> revenue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">avg_price</span><span class="params">()</span><span class="keyword">const</span> </span>;</span><br></pre></td></tr></table></figure>
+<h3 id="作用"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><p>目前的简单理解：常量成员函数使用<code>const</code>的修饰后，保证不对传入的参数进行修改。实际上该修饰是向编译器指明传入的this指针（当前类的地址指针，隐式）是一个常量指针。</p>
+<h3 id="可变数据mutable"><a href="#可变数据mutable" class="headerlink" title="可变数据mutable"></a>可变数据mutable</h3><p>可变数据声明前加上<code>mutable</code>关键字就表明其永远不会变为<code>const</code>，即使是在const函数中也可以对其进行修改。</p>
+<h2 id="struct和class的区别"><a href="#struct和class的区别" class="headerlink" title="struct和class的区别"></a>struct和class的区别</h2><p>C++中这两种方式定义类的唯一区别是：</p>
+<p><strong><em>默认的访问权限不同</em></strong></p>
+<p>struct：默认为 public ；class 默认为private</p>
+<h2 id="返回引用的函数"><a href="#返回引用的函数" class="headerlink" title="返回引用的函数"></a>返回引用的函数</h2><p>定义Person的成员函数如下，其中person是string的重命名；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span></span><br><span class="line">Person  &amp;Person::<span class="built_in">set</span>(<span class="keyword">const</span> person &amp;n,<span class="keyword">const</span> person &amp;a)&#123;</span><br><span class="line">    name = n;</span><br><span class="line">    address = a;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span></span><br><span class="line"><span class="keyword">const</span> Person  &amp;Person::display()<span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;name&lt;&lt;<span class="string">" :"</span>&lt;&lt;address&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="与返回对象本身的区别"><a href="#与返回对象本身的区别" class="headerlink" title="与返回对象本身的区别"></a>与返回对象本身的区别</h3><p>返回引用的函数即表明返回值是所调用对象本身，而非所调用对象的一个拷贝。</p>
+<p>如果不加&amp;符号则表示返回了一个对象的拷贝，可能会造成对实际对象的操作无法正常完成，因为操作的对象变为了一个拷贝对象。</p>
+<h3 id="返回常量指针的引用"><a href="#返回常量指针的引用" class="headerlink" title="返回常量指针的引用"></a>返回常量指针的引用</h3><p>对于第二个<code>display()</code>函数，由于其是常量成员函数(参数列表后有const声明),所以其返回的隐式指针<code>this</code>也是一个常量指针，所以函数应当返回的是一个常量引用。</p>
+<p>对于返回*this的成员函数我们可以进行如下的动作序列调用，即先执行set后执行display。</p>
+<p>而由于display返回的是常量引用，那么反过来的顺序就无法进行，因为set是一个针对非常量对象的函数，display执行后返回了常量对象，是无法进行进一步操作的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Person someone;</span><br><span class="line">someone.<span class="built_in">set</span>(<span class="string">"xzddong"</span>,<span class="string">"Shanghai"</span>).display();<span class="comment">//正确</span></span><br><span class="line">someone.display().<span class="built_in">set</span>(<span class="string">"ming"</span>,<span class="string">"Beijing"</span>);<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>类的同名函数会作为构造函数，以在类声明时完成初始操作。如果不定义该函数，编译器会使用默认构造函数。</p>
+<p>如果已定义自己的构造函数，使用default关键字的赋值也可以使用默认构造函数，构造函数是可以重载的。</p>
+<p>下面是Person类中的构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//constructor</span></span><br><span class="line">Person() = <span class="keyword">default</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="初始化值的两种方式"><a href="#初始化值的两种方式" class="headerlink" title="初始化值的两种方式"></a>初始化值的两种方式</h3><h4 id="直接初始化"><a href="#直接初始化" class="headerlink" title="直接初始化"></a>直接初始化</h4><p>在参数列表后，紧接<code>:</code>，之后就是对参数的初始化。</p>
+<p>初始化顺序与其在类中的定义有关而非冒号后初始化代码的顺序。所以如果各个变量初始化之间有关联就要注意定义的顺序。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;n,<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> a):name(n),address(a)&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="赋值初始化"><a href="#赋值初始化" class="headerlink" title="赋值初始化"></a>赋值初始化</h4><p>也就是在构造函数中进行赋值的定义。</p>
+<p>但对于部分的类型比如说const类型无法进行赋值的操作，而且必须进行初始化（常量必须初始化），那么就采用初始化构建成员的初始值。</p>
+<p>另一点，比起直接初始化，赋值的效率显然要低，因为多了赋值的操作。</p>
+<h2 id="迭代器的理解"><a href="#迭代器的理解" class="headerlink" title="迭代器的理解"></a>迭代器的理解</h2><p>初识迭代器，可以发现其和指针有点类似，迭代器在容器的概念之后介绍。</p>
+<p>在c中，对于一个数组，我们可以使用指针来指向其任意一个元素的地址，并通过取值符号*来获取元素的值。</p>
+<p>而迭代器也扮演着同样的角色，只不过对象包括vector，list等各种容器，容器是一系列对象的组合，并且部分容器无法像数组那样直接通过下标访问，那么迭代器就可以通用地解决问题，而通过*符号（这里叫做解引用符号）来进行取值。</p>
+<p>在下例中，即使传参就是普通的迭代器，函数中对其值的修改也会影响实际的对象，这点更与指针的操作相似。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::<span class="function">iterator <span class="title">find_num_for_ex5</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter_begin,</span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter_end,<span class="keyword">const</span> <span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">    <span class="comment">//vector&lt;int&gt;::iterator iter_tmp;</span></span><br><span class="line">    <span class="keyword">while</span>(iter_begin!= iter_end)&#123;</span><br><span class="line">        <span class="keyword">if</span>(*iter_begin==a)&#123;</span><br><span class="line">            *(iter_end <span class="number">-1</span>) =<span class="number">999999999</span>;</span><br><span class="line">            <span class="keyword">return</span> iter_begin;</span><br><span class="line">        &#125;</span><br><span class="line">        iter_begin++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> iter_end;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex5</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//iterator</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> i=<span class="number">3</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; num&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">100</span>&#125;;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*num.begin()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*find_num_for_ex5(num.begin(),num.end(),i)&lt;&lt;<span class="string">"end"</span>&lt;&lt;*(num.end()<span class="number">-1</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="const的容器"><a href="#const的容器" class="headerlink" title="const的容器"></a>const的容器</h3><p>对于未初始化的容器编译不会出错，但是可以发现这样其实是一个空元素，如果要通过迭代器<code>cnum.begin()</code>访问其中的值就等于访问一个不存在的指针一样，会出错。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cnum;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;cnum.end()-cnum.begin()&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="插入迭代器"><a href="#插入迭代器" class="headerlink" title="插入迭代器"></a>插入迭代器</h3><p>是一种迭代器适配器，也就是说把容器适配成迭代器的形式，输入为容器，而返回的是迭代器。</p>
+<p>分为三种：<code>back_inserter</code> <code>front_inserter</code> <code>inserter</code></p>
+<p>其中前两个接受一个容器参数，最后一个 <code>inserter</code>接受第二个指定插入位置的迭代器参数，该插入迭代器将会将元素插入指定位置之前。</p>
+<p>容器自带的insert成员操作也可以完成同样的工作。</p>
+<p>与普通迭代器不同的是：对于插入迭代器的自增自减操作不会造成迭代器的变化。</p>
+<p>值得注意的是：插入迭代器只能适用部分的容器，例如对于一些无法在首元素之前进行插入的容器如vector等，front_inserter无法使用。</p>
+<h3 id="流迭代器"><a href="#流迭代器" class="headerlink" title="流迭代器"></a>流迭代器</h3><p>流迭代器顾名思义就是流的迭代器。</p>
+<p>在如下对流的操作中，声明了一个默认初始化的流迭代器eof_iter，其可以作为流结束或出错的判断。</p>
+<p>在while循环中push_back中，通过解引用取到流迭代器的旧值，后置自增使其定位到流的下一个输入。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function">ifstream <span class="title">in</span><span class="params">(<span class="string">"text"</span>)</span></span>;</span><br><span class="line">   istream_iterator&lt;<span class="built_in">string</span>&gt; infs_iter(in);</span><br><span class="line">   istream_iterator&lt;<span class="built_in">string</span>&gt; eof_iter;</span><br><span class="line">   <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; str_vec;</span><br><span class="line">   <span class="keyword">while</span>(infs_iter!=eof_iter)&#123;</span><br><span class="line">       str_vec.push_back(*infs_iter++);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">auto</span> s:str_vec) &#123;</span><br><span class="line">       <span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   in.close();</span><br></pre></td></tr></table></figure>
+<p>以上代码还可以进行简化，在初始化就通过迭代器指定容器的范围。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">in.open(<span class="string">"text"</span>);</span><br><span class="line">   istream_iterator&lt;<span class="built_in">string</span>&gt; infs_iter2(in);</span><br><span class="line">   <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; str_vec2(infs_iter2,eof_iter);</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">auto</span> s:str_vec2) &#123;</span><br><span class="line">       <span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p>lambda是一种可调用对象，类似于函数。</p>
+<p>lambda的表达式如下，其中参数列表和返回类型可以省略，而返回类型必须通过尾置返回实现，也就是参数列表后用-&gt;符号指定。</p>
+<p>其中捕获列表就是捕获外部的参数，起到函数的传参作用、</p>
+<p><code>[捕获列表](参数列表)-&gt;返回类型{函数体}</code></p>
+<h3 id="为什么需要lambda"><a href="#为什么需要lambda" class="headerlink" title="为什么需要lambda"></a>为什么需要lambda</h3><p>在进行对容器中元素的一系列算法操作函数中，有的可以传参二元谓词如sort，有的传参一元谓词如find_if、partition,谓词对于这些算法来说实际上就是一些自定义判断条件的函数，而一元、二元就代表这些函数的参数数量，这样算法可以根据需要传入自己排序或者判断的参数，也许是两个整数，也许是一个string。</p>
+<p>如sort的前两个迭代器参数指定排序范围，第三个compare参数指定排序条件，返回bool类型。</p>
+<p>而patition的compare参数则可只传入一个string，用于字符串划分。</p>
+<p>而这样的话对于比如需要使用一元谓词的算法，通用性就大大降低了，因为每需要一个条件就要重写一个函数，因为对于谓词参数来说，无法通过函数传递更多的信息，其只允许传入一元、二元参数以便算法进行传参。</p>
+<p>这时候lambda就可以发挥作用了，其可以通过捕获列表传入参数，通过参数列表指定元素，再通过函数体返回判断条件是否成功。如下就是find_if中传入lambda表达式找到字符串小于sz的迭代器位置。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="keyword">size_t</span> sz=<span class="number">6</span>;</span><br><span class="line"><span class="keyword">auto</span> first_element_iter2=find_if(svec2.begin(),svec2.end(),</span><br><span class="line">                                     [sz](<span class="keyword">const</span> <span class="built_in">string</span> s)&#123;<span class="keyword">return</span> s.size()&lt;sz;&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="参数绑定解决谓词参数传参的另一种方法"><a href="#参数绑定-解决谓词参数传参的另一种方法" class="headerlink" title="参数绑定:解决谓词参数传参的另一种方法"></a>参数绑定:解决谓词参数传参的另一种方法</h3><p>使用bind可以将一个函数的参数绑定到另一个函数上，并返回一个可调用的对象，算法函数在调用时可以明确知道应当将参数传入哪个当中。</p>
+<h3 id="可变lambda"><a href="#可变lambda" class="headerlink" title="可变lambda"></a>可变lambda</h3><p>参数列表后加关键字mutable可以改变捕获列表的值，如下改变sz的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="keyword">size_t</span> sz=<span class="number">6</span>;</span><br><span class="line">    <span class="keyword">auto</span> first_element_iter2=find_if(svec2.begin(),svec2.end(),</span><br><span class="line">                             [sz](<span class="keyword">const</span> <span class="built_in">string</span> s)<span class="keyword">mutable</span>&#123;sz=<span class="number">5</span>;<span class="keyword">return</span> s.size()&lt;sz;&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="null和nullptr"><a href="#NULL和nullptr" class="headerlink" title="NULL和nullptr"></a>NULL和nullptr</h2><p>c++不支持void<em>指针的隐式转换，在c中NULL被宏定义为void\</em>空指针而C++中NULL只是0</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL ((void *)0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>在C++函数重载时，NULL实际传入的是0，会造成二义性，所以C++11中引入nullptr作为关键字，在新标准说明中，一个指向空的指针要么是一个字面值整形，要么是一个std::nullptr_t，其可以转换为空指针类型。</p>
+
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/09/18/杂七杂八/" data-toggle="tooltip" data-placement="top" title="杂七杂八">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -243,7 +321,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#内联"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">内联</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#声明"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">声明</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#作用"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">作用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#常量成员函数"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">常量成员函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#形式"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">形式</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#例子"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">例子</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#作用"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">作用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#可变数据mutable"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">可变数据mutable</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#struct和class的区别"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">struct和class的区别</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#返回引用的函数"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">返回引用的函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#与返回对象本身的区别"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">与返回对象本身的区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#返回常量指针的引用"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">返回常量指针的引用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#构造函数"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">构造函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#初始化值的两种方式"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">初始化值的两种方式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#直接初始化"><span class="toc-nav-number">5.1.1.</span> <span class="toc-nav-text">直接初始化</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#赋值初始化"><span class="toc-nav-number">5.1.2.</span> <span class="toc-nav-text">赋值初始化</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#迭代器的理解"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">迭代器的理解</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#const的容器"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">const的容器</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#插入迭代器"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">插入迭代器</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#流迭代器"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">流迭代器</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#lambda表达式"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">lambda表达式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么需要lambda"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">为什么需要lambda</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#参数绑定解决谓词参数传参的另一种方法"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">参数绑定:解决谓词参数传参的另一种方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#可变lambda"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">可变lambda</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null和nullptr"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">NULL和nullptr</span></a></li></ol>
         
         </div>
       </aside>
@@ -263,6 +341,10 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                        
+                          <a class="tag" href="/tags/#学习笔记" title="学习笔记">学习笔记</a>
+                        
                     </div>
                 </section>
                 

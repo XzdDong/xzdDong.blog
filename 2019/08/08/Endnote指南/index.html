@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="a blog">
+    <meta name="keyword" content="undefined">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          使用Endnote新建style - Blog of xzdDong
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2019/08/08/Endnote指南/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('header.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#EndNote" title="EndNote">EndNote</a>
+                            
+                        </div>
+                        <h1>使用Endnote新建style</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by xzdDong on
+                            2019-08-08
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Blog of xzdDong</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>参考了<a href="http://blog.sciencenet.cn/blog-485-448980.html" target="_blank" rel="noopener">http://blog.sciencenet.cn/blog-485-448980.html </a></p>
+<h2 id="修改style"><a href="#修改style" class="headerlink" title="修改style"></a>修改style</h2><p>国家推荐标准GB/T 7714　《文后参考文献著录规则》规范文后参考文献的格式。</p>
+<p>Endnote已经提供了Chinese Std GBT7714 (author-year).ens和Chinese Std GBT7714 (numeric).ens，分别对应著者－出版年制和顺序编码制。</p>
+<h3 id="选择对应style"><a href="#选择对应style" class="headerlink" title="选择对应style"></a>选择对应style</h3><p>在工具栏中的“Bibliographic Output Style”下拉框中，如果没有看到这两个style，可以点下拉列表中的“Select Another Style”，会出现“Choose A Style”对话框。在对话框中，在“Quick Search”中输入“chinese”并回车，就会显示“Chinese Std GBT7714 (author-year)”和“Chinese Std GBT7714 (numeric)”这两个style。如果没有显示出来，说明你的机器里没有这两个style，需要从endnote官网下载。</p>
+<p>endnote的官网为<a href="http://www.endnote.com/" target="_blank" rel="noopener">www.endnote.com</a>，进入后点导航栏的“support &amp; services”。打开后点击左边栏“Download”中的“Output Styles”，可以进入output styles的选择页面。这个页面中，style的列表上方有一个供搜索的区域，在“Style Finder”选项卡中的“Publication Name”中输入“chinese standard”并回车，就可以搜索到“Chinese Std GBT7714 (author-year)”和“Chinese Std GBT7714 (numeric)”这两个style，就可以下载了。把这两个style的ens文件下载下来，拷贝到endnote的安装目录即可。如果装在C盘，那么拷到C:Program FilesEndNote X4Styles下面即可。</p>
+<p>但是这两个自带的style都不能完全满足国家标准的要求，需要自己在此基础上自定义。我在这里就准备谈一下如何通过自定义制作符合GB/T7714《文后参考文献著录规则》的输出格式。</p>
+<h4 id="author-year"><a href="#Author-Year" class="headerlink" title="Author-Year"></a>Author-Year</h4><p>1.在工具栏中的“Bibliographic Output Style”下拉框中选择“Chinese Std GBT7714 (author-year)”。</p>
+<p>2.展开菜单栏中的“Edit”菜单，将鼠标移到“Output Styles”，展开次级菜单，点击Edit“Chinese Std GBT7714 (author-year)”，就可以开始自定义了。</p>
+<p>3.这个style已经有一些符合GB/T7714《文后参考文献著录规则》的设置，因此只需要修改部分设置即可。</p>
+<p>这里主要修改Bibliography中的内容。</p>
+<p>在“Templates”中，把每个参考文献类型的输出格式改为符合国标的格式。具体做法是在我这篇博文最后的附录1　参考文献输出格式中的Author-Year部分中，找到对应的格式，替换即可。以“Journal Article”为例，复制“Author. Year. Title[J]. Journal|, Volume|(Issue)|: Pages|.”，回到endnote，找到Templates列表中的“Journal Article”，替换原有的“Author Year. Title. Journal [J], Volume|: Pages|.”即可。如果在Templates列表中没有找到想要的参考文献类型，可以点列表框左上方的“Reference Type”，勾选中想要的参考文献类型即可。我在附录1中列出的是我所遇到的常用的参考文献类型，可能对部分朋友来说不够用。这些朋友可以下载我在附录2中提供的GB/T7714《文后参考文献著录规则》的PDF文件，制作所需的格式。</p>
+<p>在进行下一步工作之前，我们需要处理一下页码、作者姓名等设置。</p>
+<p>在“Page Numbers”中，选择“Show the full range of pages”。</p>
+<p>在“Journal Names”中，选择“Use full journal name”。</p>
+<p>在“Bibliography”中的“Editor Name”中，把“First Author”改为“Smith Jane”，把“Other Author”改为“Doe John”，把“Initials”改为“A B”。</p>
+<h4 id="numeric"><a href="#Numeric" class="headerlink" title="Numeric"></a>Numeric</h4><p>1.在工具栏中的“Bibliographic Output Style”下拉框中选择“Chinese Std GBT7714 (numberic)”。</p>
+<p>2.展开菜单栏中的“Edit”菜单，将鼠标移到“Output Styles”，展开次级菜单，点击Edit“Chinese Std GBT7714 (numberic)”，就可以开始自定义了。</p>
+<p>3.这个style已经有一些符合GB/T7714《文后参考文献著录规则》的设置，因此只需要修改部分设置即可。</p>
+<p>在“Page Numbers”中，选择“Show the full range of pages(e.g. 123-125)”。</p>
+<p>在“Journal Names”中，选择“Use full journal name”。</p>
+<p>在“Bibliography”中的“Templates”中，把每个参考文献类型的输出格式改为符合国标的格式。具体做法是在我这篇博文最后的附录1　参考文献输出格式中的Author-Year部分中，找到对应的格式，替换即可。以“Journal Article”为例，复制“Author. Year. Title[J]. Journal|, Volume|(Issue)|: Pages|.”，回到endnote，找到Templates列表中的“Journal Article”，替换原有的“Author Year. Title. Journal [J], Volume|: Pages|.”即可。如果在Templates列表中没有找到想要的参考文献类型，可以点列表框左上方的“Reference Type”，勾选中想要的参考文献类型即可。我在附录1中列出的是我所遇到的常用的参考文献类型，可能对部分朋友来说不够用。这些朋友可以下载我在附录2中提供的GB/T7714《文后参考文献著录规则》的PDF文件，制作所需的格式。</p>
+<p>做完这些工作，就修改完成了，输出的格式就基本上符合GB/T7714《文后参考文献著录规则》的要求了。修改后可以按原文件名保存这个style，也可以自定义一个文件名。把修改好的style存至安全的地方，万一重装系统，可以把它拷回style目录下使用。</p>
+<p>这样做出的输出格式还存在一个问题，即这个格式只符合语言为英文的参考文献。如果所做的工作只涉及英文参考文献，在生成输出格式后不必处理。如果工作同时涉及中、英文参考文献，需要混排参考文献，可以参照我的另一篇博文《<a href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=485&amp;do=blog&amp;id=306545" target="_blank" rel="noopener">Endnote生成的中英文混排参考文献中“等”与“et al”的处理</a>》进行处理。如果工作仅涉及中文参考文献，并且在使用endnote时很少涉及英文参考文献，那么可以更改著者或编者名单的“et al.”为“等”。对Author-Year格式，选择“Citations”中的“Author Lists”，把右边出现的两个“ et al.”都改为“ 等”，注意修改前“et al.”和修改后“等”前面都有一个半角空格；在“Bibliography”中的“Author Lists”和“Editor Lists”，都把“, et al.”改为“, 等”，注意修改前“et al.”和修改后“等”前面都有一个半角空格。对Numberic格式，在“Bibliography”中的“Author Lists”和“Editor Lists”，都把“, et al.”改为“, 等”，注意修改前“et al.”和修改后“等”前面都有一个半角空格。</p>
+<h3 id="附录-参考文献输出格式"><a href="#附录-参考文献输出格式" class="headerlink" title="附录　参考文献输出格式"></a>附录　参考文献输出格式</h3><h4 id="author-year"><a href="#Author-Year-1" class="headerlink" title="Author-Year"></a><strong>Author-Year</strong></h4><p>Journal Article连续出版物中的析出文献(期刊)<br>析出文献主要责任者. 析出文献题名[文献类型标志]. 连续出版物题名: 其他题名信息, 年, 卷(期): 页码.<br>Author. Year. Title[J]. Journal|, Volume|(Issue)|: Pages|.</p>
+<p>Book专著(书籍)<br>主要责任者. 题名: 其他题名信息[文献类型标志]. 其他责任者. 版本项. 出版地: 出版者, 出版年: 引文页码.<br>Author. Year. Title[M]. |Edition. |City|: Publisher|: Pages|.</p>
+<p>Thesis(学位论文)<br>主要责任者. 题名[文献类型标志]. 学校所在地: |大学|院系|, 年份.<br>Author. Year. Title[D].| City: |University| Academic Department|.</p>
+<p>Conference Proceedings会议论文<br>Author. Year Published. Title[C]//|Editor. |Short Title. |Conference Name|, Date|, Sponsor|, Conference Location|. |Place Published|: Publisher|,Volume|: Pages|.</p>
+<p>Conference Paper论文论文集<br>Author. Year. Title|: Place Published|, Date[C]. |Conference Location|: Publisher|: Pages|.</p>
+<p>Book Section专著中的析出文献(书籍章节)<br>析出文献主要责任者. 析出文献名[文献类型标志]. 析出文献其他责任者//专著主要责任者. 专著题名: 其他题名信息. 版本项. 出版地: 出版者, 出版年: 析出文献的页码[引用日期]. 获取和访问路径.<br>Author. Year. Title[M|/Label|]. //|Editor.| Book Title. |Edition. |City|: Publisher|: Pages|[Access Date]|. |URL.</p>
+<p>Report科技报告<br>Author. Year. Title[R].| City:| Institution|.</p>
+<p>Web Page联机电子文献<br>主要责任者. 题名: 其他题名信息[文献类型标志/文献载体标志]. 出版地: 出版者, 出版年(更新或修改日期)[引用日期]. 获取和访问路径.<br>Author. Year. Title|: Description|[Type of Medium/OL]. |City|: Publisher|. ( Last Update Date)|[Access Date]. URL.</p>
+<p>Electronic Article联机文献中的连续出版物中的析出文献(期刊)<br>析出文献主要责任者. 析出文献题名[文献类型标志]. 连续出版物题名: 其他题名信息, 年, 卷(期): 页码[引用日期]. 获取和访问路径.<br>Author. Year. Title[J/OL]. Periodical Title|,Volume|(Issue)|: Pages|[ Date Accessed]. |URL.</p>
+<p>Electronic Book联机文献中的专著(书籍)<br>主要责任者. 题名: 其他题名信息[文献类型标志]. 其他责任者. 版本项. 出版地: 出版者, 出版年: 引文页码[引用日期]. 获取和访问路径.<br>Author. Year. Title[M/OL]. |Edition. |City|: Publisher|[ Date Accessed]. |URL.</p>
+<p>Government Document政府报告<br>Author. Year. Title[R].| City:| Department|: Pages|.</p>
+<p>Standard专著(标准)<br>主要责任者. 题名: 其他题名信息[文献类型标志]. 其他责任者. 版本项. 出版地: 出版者, 出版年: 引文页码.<br>Institution. Year. Title[S]. |Place Published|: Publisher|: Pages|.</p>
+<p>Newspaper Article报纸中析出的文献<br>主要责任者. 题名[N|/联机文献标志|]. 报纸题名, 出版日期(版面)[引用日期]. 获取和访问路径.<br>Author. Year. Title[N|/Label|]. Newspaper, Issue Date(Section)[Access Date]. URL.</p>
+<h4 id="numeric"><a href="#Numeric-1" class="headerlink" title="Numeric"></a><strong>Numeric</strong></h4><p>Journal Article连续出版物中的析出文献(期刊)<br>析出文献主要责任者. 析出文献题名[文献类型标志]. 连续出版物题名: 其他题名信息, 年, 卷(期): 页码.<br>Author. Title[J]. Journal, Year|, Volume|(Issue)|: Pages|.</p>
+<p>Book专著(书籍)<br>主要责任者. 题名: 其他题名信息[文献类型标志]. 其他责任者. 版本项. 出版地: 出版者, 出版年: 引文页码.<br>Author. Title[M]. |Edition. |City|: Publisher|, Year|: Pages|.</p>
+<p>Thesis(学位论文)<br>主要责任者. 题名[文献类型标志]. 学校所在地: |大学|院系|, 年份.<br>Author. Title[D]. City: |University| Academic Department|, Year|.</p>
+<p>Conference Proceedings会议论文<br>Author. Title[C]//| Editor. |Short Title. |Conference Name|, Date|, Sponsor|, Conference Location|. |Place Published|: Publisher|, Year Published|,Volume|: Pages|.</p>
+<p>Conference Paper论文论文集<br>Author. Title|: Place Published|, Date[C]. |Conference Location|: Publisher|, Year|: Pages|.</p>
+<p>Book Section专著中的析出文献(书籍章节)<br>析出文献主要责任者. 析出文献名[文献类型标志]. 析出文献其他责任者//专著主要责任者. 专著题名: 其他题名信息. 版本项. 出版地: 出版者, 出版年: 析出文献的页码[引用日期]. 获取和访问路径.<br>Author. Title[M|/Label|]. //| Editor.| Book Title. |Edition. |City|: Publisher|, Year|: Pages|[Access Date]|. |URL.</p>
+<p>Report科技报告<br>Author. Title[R].| City:| Institution|, Year|.</p>
+<p>Web Page联机电子文献<br>主要责任者. 题名: 其他题名信息[文献类型标志/文献载体标志]. (更新或修改日期)[引用日期]. 获取和访问路径.<br>Author. Title[EB/OL] (Last Update Date)[Access Date]. URL.</p>
+<p>Electronic Article联机文献中的连续出版物中的析出文献(期刊)<br>析出文献主要责任者. 析出文献题名[文献类型标志]. 连续出版物题名: 其他题名信息, 年, 卷(期): 页码[引用日期]. 获取和访问路径.<br>Author. Title[J/OL]. Periodical Title, Year|,Volume|(Issue)|: Pages|[ Date Accessed]. |URL.</p>
+<p>Electronic Book联机文献中的专著(书籍)<br>主要责任者. 题名: 其他题名信息[文献类型标志]. 其他责任者. 版本项. 出版地: 出版者, 出版年: 引文页码[引用日期]. 获取和访问路径.<br>Author. Title[M/OL]. |Edition. |City|: Publisher|, Year|[ Date Accessed]. |URL.</p>
+<p>Government Document政府报告<br>Author. Title[R].| City|: Department|, Year|: Pages|.</p>
+<p>Standard专著(标准)<br>主要责任者. 题名: 其他题名信息[文献类型标志]. 其他责任者. 版本项. 出版地: 出版者, 出版年: 引文页码.<br>Institution. Title[S]. |Place Published|: Publisher|, Year|: Pages|.</p>
+<p>Newspaper Article报纸中析出的文献<br>主要责任者. 题名[N|/联机文献标志|]. 报纸题名, 出版日期(版面)[引用日期]. 获取和访问路径.<br>Reporter. Title[N|/Label|]. Newspaper, Issue Date(Section)|[Access Date]|.| URL.</p>
+<h2 id="引用添加超链接"><a href="#引用添加超链接" class="headerlink" title="引用添加超链接"></a>引用添加超链接</h2><p>word插件中勾选如下选项</p>
+<p><img src="/2019/08/08/Endnote指南/myBlog\source\_posts\Endnote指南\1570455819546.png" alt="1570455819546"></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/08/18/lighttpd学习/" data-toggle="tooltip" data-placement="top" title="lighttpd学习">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/07/07/ESP9266调试问题/" data-toggle="tooltip" data-placement="top" title="ESP9266调试问题">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#修改style"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">修改style</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#选择对应style"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">选择对应style</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#author-year"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">Author-Year</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#numeric"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">Numeric</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#附录-参考文献输出格式"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">附录　参考文献输出格式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#author-year"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">Author-Year</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#numeric"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">Numeric</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#引用添加超链接"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">引用添加超链接</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#EndNote" title="EndNote">EndNote</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/XzdDong">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; xzdDong 2019 
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<!-- img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" / -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
