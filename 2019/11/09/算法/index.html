@@ -142,6 +142,13 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -150,13 +157,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -217,6 +217,24 @@
 <h1 id="随机数生成"><a href="#随机数生成" class="headerlink" title="随机数生成"></a>随机数生成</h1><p>rand函数采用了线性同余法，以srand作为种子，产生伪随机数。</p>
 <p><a href="https://www.cnblogs.com/vectors07/p/8185215.html" target="_blank" rel="noopener">https://www.cnblogs.com/vectors07/p/8185215.html</a></p>
 <h1 id="马尔可夫决策过程"><a href="#马尔可夫决策过程" class="headerlink" title="马尔可夫决策过程"></a>马尔可夫决策过程</h1><h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><p><a href="https://www.cnblogs.com/fnlingnzb-learner/p/9374732.html" target="_blank" rel="noopener">https://www.cnblogs.com/fnlingnzb-learner/p/9374732.html</a></p>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="manacher马拉车算法-最长回文子串"><a href="#Manacher马拉车算法-最长回文子串" class="headerlink" title="Manacher马拉车算法-最长回文子串"></a>Manacher马拉车算法-最长回文子串</h2><p>是基于中心拓展的改进，但把时间复杂度降到了O(n)。</p>
+<p>基本思想：</p>
+<p>1.向原字符串$S1$所有字符中间（包括头和尾）插入一个其他字符如#，形成新字符串$S2$使得总长度是奇数2n+1，所有回文字符串都能变成奇数回文,且起始都是特殊符号#。</p>
+<p>2.建立一个辅助数组表P，大小与$S2$相同，$P[i]$表示第$i$个元素为中心的最长回文半径$R$,其针对的是插入过字符的新字符串$S2$。</p>
+<p>3.$P[i]=R$，其也表示该处$S1$的回文串的长度。回文字符串在$S2$中是$[i-R,i+R]$范围，元素个数为$2R+1$,如果特殊符号#为圆心，那么原字符串$S2$中的回文字符长度为$R$,如果普通字符为圆心，那么原字符串$S2$中的回文字符长度为$R$，这是由于$S2$中的回文串起始都是特殊字符，其总会比普通字符多一个。</p>
+<p>4.$P[i]=R$，$S1$中起始字符串的下标$j=(i-R)/2$ 。</p>
+<p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/solution/5-zui-chang-hui-wen-zi-chuan-cc-by-bian-bian-xiong/" target="_blank" rel="noopener">如何构建这个表</a></p>
+<p>1.第一利用回文字符串的对称性。</p>
+<p>2.考虑各种情况。</p>
+<h2 id="kmp算法-字符串匹配"><a href="#KMP算法-字符串匹配" class="headerlink" title="KMP算法-字符串匹配"></a>KMP算法-字符串匹配</h2><p>该算法的需要掌握的两部分：</p>
+<p>算法思想：采用建表的方式记录在匹配每个字符不成功的时候应当回退的状态，实质就是查询该字符前的所有字符的最大前缀后缀重复值。</p>
+<p>建表过程：在建表时实际也采用了以上的思想。</p>
+<p>算法思想，<a href="https://blog.csdn.net/qq_37969433/article/details/82947411" target="_blank" rel="noopener">这篇博客</a>描述的比较清楚。模式串为pat，也就是用于查找是否存在的串。</p>
+<p>建表过程</p>
+<p>1.定义初始位置的状态kmp[0]=-1，kmp[1]=0，-1主要是为了后面计算时自增为0；</p>
+<p>2.根据kmp[j]推演kmp[j+1]，原理为：如果pat[i]和kmp[i]所在位置的元素相等，kmp[j+1]=kmp[j]++。如果不相等，继续寻找下一状态，直到回到 j=-1，也就是回到开头。</p>
+<p>建表就是用j所在字符匹配前面已经建立表的字符，而查找是以被查找字符串中的字符匹配全部建表的pat。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="comment">//KMP</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">strStr</span><span class="params">(<span class="built_in">string</span> haystack, <span class="built_in">string</span> needle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(haystack.size()&gt;=needle.size())&#123;</span><br><span class="line">            <span class="keyword">if</span>(!needle.size())<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//构建KMP状态表,包含当前状态和对应的下一状态</span></span><br><span class="line">            <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>,k=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> kmp[needle.size()+<span class="number">1</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">            kmp[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">            kmp[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">            i=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;needle.size())&#123;</span><br><span class="line">                <span class="keyword">if</span>(j==<span class="number">-1</span>||needle[i]==needle[j])&#123;kmp[++i]=++j;&#125;</span><br><span class="line">                <span class="keyword">else</span>&#123; j=kmp[j];&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//  for(auto t:kmp)cout&lt;&lt;t&lt;&lt;" ";</span></span><br><span class="line">            <span class="comment">//  cout&lt;&lt;endl;</span></span><br><span class="line">            <span class="comment">//查找</span></span><br><span class="line">            <span class="keyword">int</span> state=<span class="number">0</span>;</span><br><span class="line">            i=<span class="number">0</span>;j=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;haystack.size())&#123;</span><br><span class="line">                j=state;</span><br><span class="line">                <span class="keyword">while</span>(j&lt;needle.size())&#123;</span><br><span class="line">                    <span class="keyword">if</span>(needle[j]==haystack[i+j])&#123;</span><br><span class="line">                        j++;</span><br><span class="line">                        state=j;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(kmp[j]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                        i=i+j-kmp[j];</span><br><span class="line">                        state=kmp[j];</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span>&#123;</span><br><span class="line">                        state=<span class="number">0</span>;</span><br><span class="line">                        i++;<span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(j==needle.size())<span class="keyword">return</span> i;</span><br><span class="line">                &#125; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
                 
 
@@ -252,7 +270,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#动态规划"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动态规划</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#随机数生成"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">随机数生成</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#马尔可夫决策过程"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">马尔可夫决策过程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#排序算法"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">排序算法</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#动态规划"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动态规划</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#随机数生成"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">随机数生成</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#马尔可夫决策过程"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">马尔可夫决策过程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#排序算法"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">排序算法</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#字符串"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">字符串</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#manacher马拉车算法-最长回文子串"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">Manacher马拉车算法-最长回文子串</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#kmp算法-字符串匹配"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">KMP算法-字符串匹配</span></a></li></ol></li></ol>
         
         </div>
       </aside>
