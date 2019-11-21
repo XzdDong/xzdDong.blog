@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          About - Blog of xzdDong
+          关于原码、反码和补码的正确理解 - Blog of xzdDong
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/about/">
+    <link rel="canonical" href="http://yoursite.com/2019/11/21/关于原码、反码和补码的正确理解/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,8 +69,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/Iron-Man-3.jpg')
-            /*page*/
+            background-image: url('header.jpg')
+            /*post*/
         
     }
     
@@ -83,10 +83,18 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>About</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading">Wish for the Best, Prepare for the Worst</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#计算机基础" title="计算机基础">计算机基础</a>
+                            
+                        </div>
+                        <h1>关于原码、反码和补码的正确理解</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by xzdDong on
+                            2019-11-21
+                        </span>
                     </div>
                 
 
@@ -189,187 +197,112 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <blockquote>
-<p>业精于勤荒于嬉<br>行成于思毁于随</p>
-</blockquote>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
+                <p>首先需要明确，计算机中数字都是以二进制进行运算。</p>
+<h1 id="如何计算"><a href="#如何计算" class="headerlink" title="如何计算"></a>如何计算</h1><p>原码就是原来的表示方式；</p>
+<p>反码就是将数字按位取反；</p>
+<p>补码就是取反加一。</p>
+<p>那么究竟为什么这么算？为什么需要补码？</p>
+<h1 id="模的概念"><a href="#模的概念" class="headerlink" title="模的概念"></a>模的概念</h1><p>模在这里表示计量范围，比如一个10进制二位数的模是100，能表示0~99，一个8位二进制数实际能表示的范围是1 0000 0000b个数字，从0~1111 1111。这些能表示的数字其实都是模的余数，因为不可能大于等于模。</p>
+<h1 id="补数"><a href="#补数" class="headerlink" title="补数"></a>补数</h1><p>补数就是模减去当前数字。比如在十进制中，二位十进制数88的补数就是100-88=12。二进制中，一个四位数1001的补数就是10000-0001=1111。</p>
+<p>那么补数的存在有什么意义呢？</p>
+<p>可以使减法变成加法。</p>
+<p>从模的概念可以看出，一个数字表示方法的模为m的话，那么用该方法表示的a和b相减就可以表示为</p>
+<p>a-b=a+(m-b)(mod m)=a+(m-b)</p>
+<p>m-b就是b的补数。可以理解为  减一个数=加这个数的补数，就比如将时钟从6点向前拨4个点到2点和从6点往后拨8个点到2点效果是一样的。因为进位被忽略了(超出了表示范围)。</p>
+<p>实质上计算机的四则运算都是运用了加法，包括乘除也是依此为基础，这样非常利于计算机运算。</p>
+<h1 id="反码和补码"><a href="#反码和补码" class="headerlink" title="反码和补码"></a>反码和补码</h1><p>反码的英文是one’s complement </p>
+<p>也就是1的补数，1的补数就是0，那么0的补数就是1，在二进制中表现为取反，这就是反码。</p>
+<p>补码的英文是two’s complement</p>
+<p>也就是2的补数，它和二进制更加对应，一个有限位数的二进制数的模就是是100…00(0的个数和位数相同),比如四位数的模就是10000，那么一个四位数x的补数就是</p>
+<p>10000-x=1111-x+1</p>
+<p>1111-x实际上就是取反，所以补码就等于一个数取反+1。</p>
 
-                <!-- 如果开启评论功能 -->
                 
-                    <hr>
 
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
                     
-
                     
-
-
+                        <li class="next">
+                            <a href="/2019/11/09/算法/" data-toggle="tooltip" data-placement="top" title="算法">Next Post &rarr;</a>
+                        </li>
                     
+                </ul>
 
-                    
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#如何计算"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">如何计算</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#模的概念"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">模的概念</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#补数"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">补数</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#反码和补码"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">反码和补码</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#计算机基础" title="计算机基础">计算机基础</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
                 
             </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-            <a href="/tags/#算法" title="算法" rel="2">算法</a>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
+        </div>
     </div>
-</section>
+</article>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id="avatar_pic" src="/img/galaxy.jpg">
-        
 
-        
-            <p>a student</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
 
-            
 
-            
 
-            
-                <li>
-                    <a target="_blank" href="https://github.com/XzdDong">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>RECENT POSTS
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2019/11/21/关于原码、反码和补码的正确理解/">关于原码、反码和补码的正确理解</a>
-        </li>
-      
-        <li>
-          <a href="/2019/11/09/算法/">算法</a>
-        </li>
-      
-        <li>
-          <a href="/2019/10/22/leetcode笔记/">leetcode笔记</a>
-        </li>
-      
-        <li>
-          <a href="/2019/09/24/Effective-C-学习笔记/">Effective C++学习笔记</a>
-        </li>
-      
-        <li>
-          <a href="/2019/09/18/杂七杂八/">杂七杂八</a>
-        </li>
-      
-    </ul>
-  </div>
-</h5>
-        <hr>
-    
-        <!-- Friends Blog -->
-
-        <hr>
-    
-        
-    <h5>ARCHIVES</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-
-        <hr>
-    
-        <!-- Categories -->
-
-    <h5>categories
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客/">博客</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学术写作/">学术写作</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机网络/">计算机网络</a><span class="category-list-count">1</span></li></ul>
-    </div>
-</h5>
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
