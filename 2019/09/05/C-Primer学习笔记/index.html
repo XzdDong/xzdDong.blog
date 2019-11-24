@@ -142,7 +142,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -156,7 +156,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -252,6 +252,7 @@
 <p>而迭代器也扮演着同样的角色，只不过对象包括vector，list等各种容器，容器是一系列对象的组合，并且部分容器无法像数组那样直接通过下标访问，那么迭代器就可以通用地解决问题，而通过*符号（这里叫做解引用符号）来进行取值。</p>
 <p>在下例中，即使传参就是普通的迭代器，函数中对其值的修改也会影响实际的对象，这点更与指针的操作相似。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::<span class="function">iterator <span class="title">find_num_for_ex5</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter_begin,</span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter_end,<span class="keyword">const</span> <span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">    <span class="comment">//vector&lt;int&gt;::iterator iter_tmp;</span></span><br><span class="line">    <span class="keyword">while</span>(iter_begin!= iter_end)&#123;</span><br><span class="line">        <span class="keyword">if</span>(*iter_begin==a)&#123;</span><br><span class="line">            *(iter_end <span class="number">-1</span>) =<span class="number">999999999</span>;</span><br><span class="line">            <span class="keyword">return</span> iter_begin;</span><br><span class="line">        &#125;</span><br><span class="line">        iter_begin++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> iter_end;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex5</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//iterator</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> i=<span class="number">3</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; num&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">100</span>&#125;;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*num.begin()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*find_num_for_ex5(num.begin(),num.end(),i)&lt;&lt;<span class="string">"end"</span>&lt;&lt;*(num.end()<span class="number">-1</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于vector和数组来说，除了常见的++和–等操作，迭代器还可以相减，并且+n或-n，因为存储空间连续。</p>
 <h3 id="const的容器"><a href="#const的容器" class="headerlink" title="const的容器"></a>const的容器</h3><p>对于未初始化的容器编译不会出错，但是可以发现这样其实是一个空元素，如果要通过迭代器<code>cnum.begin()</code>访问其中的值就等于访问一个不存在的指针一样，会出错。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cnum;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;cnum.end()-cnum.begin()&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="插入迭代器"><a href="#插入迭代器" class="headerlink" title="插入迭代器"></a>插入迭代器</h3><p>是一种迭代器适配器，也就是说把容器适配成迭代器的形式，输入为容器，而返回的是迭代器。</p>
