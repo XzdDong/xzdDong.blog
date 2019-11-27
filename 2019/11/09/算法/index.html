@@ -142,7 +142,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -156,7 +156,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -249,6 +249,13 @@
 <h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1><p>[参考博客][<a href="https://www.cnblogs.com/lanhaicode/p/10546257.html]" target="_blank" rel="noopener">https://www.cnblogs.com/lanhaicode/p/10546257.html]</a></p>
 <p>堆排序适用于较大规模数据处理。</p>
 <p>堆是利用完全二叉树维护的一组数组。堆顶就是根节点，堆排序中升序用大顶堆获取最大值元素后沉到数组末端，降序用小顶堆获取最小值沉到数组末端。</p>
+<h1 id="并查集union-find算法"><a href="#并查集union-find算法" class="headerlink" title="并查集union-find算法"></a>并查集union-find算法</h1><p>用于解决连通问题，最小生成树问题，简单来说就是将具有一定条件的元素连接在一起成为一个集合。</p>
+<p>[这篇博客][<a href="https://blog.csdn.net/niushuai666/article/details/6662911]介绍的有趣易懂，而《算法4》中1.5节也介绍的比较详尽。" target="_blank" rel="noopener">https://blog.csdn.net/niushuai666/article/details/6662911]介绍的有趣易懂，而《算法4》中1.5节也介绍的比较详尽。</a></p>
+<p>并查集构建需要三个基本要素：</p>
+<p>1个存储连通状态的数组或其他结构。</p>
+<p>1个用于连通并做路径压缩的union函数，其使得连通状态的分量均有相同的连通状态(相同的整数表示)。</p>
+<p>1个用于查找根节点(连通状态)的find函数。</p>
+<p>简单有效的路径压缩就是把所有连通分量都连接到同一个根节点上，而这是加权quick-union算法的一个特殊情况。加权quick-union实际上是记录森林(由多个子树构成)中树的节点数量，从而将小树链接到大树上，以降低建立新的连接的深度，以减少查找根节点的次数，在大型动态连通性问题上，其比无路径压缩的算法快百万倍。</p>
 
                 
 
@@ -288,7 +295,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#动态规划"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动态规划</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#随机数生成"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">随机数生成</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#马尔可夫决策过程"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">马尔可夫决策过程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#排序算法"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">排序算法</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#字符串"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">字符串</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#manacher马拉车算法-最长回文子串"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">Manacher马拉车算法-最长回文子串</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#kmp算法-字符串匹配"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">KMP算法-字符串匹配</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#回溯法"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">回溯法</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二叉树"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">二叉树</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#满二叉树"><span class="toc-nav-number">7.0.1.</span> <span class="toc-nav-text">满二叉树</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#完全二叉树"><span class="toc-nav-number">7.0.2.</span> <span class="toc-nav-text">完全二叉树</span></a></li></ol></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#堆排序"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">堆排序</span></a></li>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#动态规划"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动态规划</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#随机数生成"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">随机数生成</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#马尔可夫决策过程"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">马尔可夫决策过程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#排序算法"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">排序算法</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#字符串"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">字符串</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#manacher马拉车算法-最长回文子串"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">Manacher马拉车算法-最长回文子串</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#kmp算法-字符串匹配"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">KMP算法-字符串匹配</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#回溯法"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">回溯法</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二叉树"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">二叉树</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#满二叉树"><span class="toc-nav-number">7.0.1.</span> <span class="toc-nav-text">满二叉树</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#完全二叉树"><span class="toc-nav-number">7.0.2.</span> <span class="toc-nav-text">完全二叉树</span></a></li></ol></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#堆排序"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">堆排序</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#并查集union-find算法"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">并查集union-find算法</span></a></li>
         
         </div>
       </aside>
