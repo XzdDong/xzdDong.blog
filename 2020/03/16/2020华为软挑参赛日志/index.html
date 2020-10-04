@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          杂七杂八 - Blog of xzdDong
+          2020华为软挑 - Blog of xzdDong
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2019/09/18/杂七杂八/">
+    <link rel="canonical" href="http://yoursite.com/2020/03/16/2020华为软挑参赛日志/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,14 +86,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#杂七杂八" title="杂七杂八">杂七杂八</a>
-                            
                         </div>
-                        <h1>杂七杂八</h1>
+                        <h1>2020华为软挑</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by xzdDong on
-                            2019-09-18
+                            2020-03-16
                         </span>
                     </div>
                 
@@ -210,7 +208,41 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="某网盘下载"><a href="#某网盘下载" class="headerlink" title="某网盘下载"></a>某网盘下载</h2><p>在一级域名后加上wp即可</p>
+                <h1 id="热身赛"><a href="#热身赛" class="headerlink" title="热身赛"></a>热身赛</h1><p>2020年3月16日 </p>
+<p>距离热身赛开赛一周。</p>
+<h4 id="阶段0阅读示例代码xjb调参"><a href="#阶段0：阅读示例代码，xjb调参" class="headerlink" title="阶段0：阅读示例代码，xjb调参"></a>阶段0：阅读示例代码，xjb调参</h4><p>​        分数24    精度70%   数据规模1/120</p>
+<p>​        示例代码使用逻辑回归，封装倒是很好，但效率就非常感人了。</p>
+<h4 id="阶段1梯度下降-gt随机梯度下降sgd"><a href="#阶段1：梯度下降-—-gt-随机梯度下降SGD" class="headerlink" title="阶段1：梯度下降  — &gt;随机梯度下降SGD"></a>阶段1：梯度下降  — &gt;随机梯度下降SGD</h4><p>​        分数20    精度82%  数据规模1/5</p>
+<p>​        训练时间大幅缩短，在本地8000条特征向量的数据集上甚至可以忽略不计。</p>
+<p>​        经过一系列优化(魔改)，优化到了80%精度20多分，训练数据1/5，在SGD下，训练数据规模对速度影响偏小，于是着手优化IO。</p>
+<h4 id="阶段2io流-gt内存映射"><a href="#阶段2：IO流-—-gt-内存映射" class="headerlink" title="阶段2：IO流  — &gt;内存映射"></a>阶段2：IO流  — &gt;内存映射</h4><p>​        分数6.8  精度83%  数据规模1/5</p>
+<p>​        应用内存映射后，时间大幅下降。经过查资料，内存映射可以减少数据在用户态和内核态的一层缓冲，直接将文件数据地址映射到内存中。缺点就是，在写文件时无法拓展文件大小，也就是无法写入一个新文件，只能在原文件范围修改。</p>
+<p>​        测试发现内存映射操作时间在微秒级，所以数据规模对内存映射操作时间影响不大，只对映射后的数据处理有影响。</p>
+<h4 id="阶段3训练单线程io-gt多线程io"><a href="#阶段3：训练单线程IO-—-gt-多线程IO" class="headerlink" title="阶段3：训练单线程IO — &gt;多线程IO"></a>阶段3：训练单线程IO — &gt;多线程IO</h4><p>​        分数5.3  精度80%  数据规模1/5</p>
+<p>​        写了一段很乱的代码，另开三个线程，四线程同时处理训练数据（主要是将字符转换为特征向量，构建多个训练数据集）再依次迭代，由于SGD的迭代一次只需要一个数据，所以对训练算法不会产生太大影响。</p>
+<p>​        在本地四线程有一定效果，线上只提升了1s左右，分数由6.8到5.3，精度80% 。</p>
+<p>​        该处注意一点，一开始我还是用clock()函数来判断程序运行时间，事实上多线程clock()记录了多核的时钟累加，具体原因需要继续学习，这导致我一直以为是程序出错或者线程分配有问题，使用time命令显示程序实际运行时间可以发现多线程IO还是有明显提升。</p>
+<p>​        同时经过测试，线上数据规模应在8w-10w条左右，略微增加处理数据上限到3w，精度达到85%，分数5.7。        后续优化方向：已经没有什么之明确的优化思路了，第一名已经做到0.5s，是我用时的1/10,难以望其项背。</p>
+<p>可以优化一下代码结构，把多线程IO改的可拓展性更强一些，并且在线上尝试开更多线程。此外可以读取全部数据规模，测试目前的多线程IO究竟占耗时的多少，也许在进行预测时或者测试数据载入也可以考虑多线程。</p>
+<h4 id="阶段4预测单线程io-gt多线程io"><a href="#阶段4：预测单线程IO-—-gt-多线程IO" class="headerlink" title="阶段4：预测单线程IO — &gt;多线程IO"></a>阶段4：预测单线程IO — &gt;多线程IO</h4><p>​        分数1.9  精度79%  数据规模1/5</p>
+<p>​        四线程同时处理预测数据。虽然有所优化但官方优化了测评机，将数据直接挂载到内存上了，这样内存映射的优势没了，排名已掉到50开外，第一名已经刷到0.07s。</p>
+<p>​        优化方向：目前主要时间瓶颈还是在IO，主要在string to double的转换上。</p>
+<h4 id="阶段5优化string-to-double"><a href="#阶段5：优化string-to-double" class="headerlink" title="阶段5：优化string to double"></a>阶段5：优化string to double</h4><p>​        分数1.07  精度82%  数据规模1/5</p>
+<p>​        放弃使用strod函数，假定数据小数点后位数相同，只读数字和符号位，转化为整数。</p>
+<p>​        优化方向：黔驴技穷了，只能调参了。</p>
+<p>​        分数0.84  精度79%  数据规模1/8</p>
+<p>​        分数0.74  精度70%  数据规模1/50</p>
+<h4 id="阶段6发现官方优化指南"><a href="#阶段6：发现官方优化指南" class="headerlink" title="阶段6：发现官方优化指南"></a>阶段6：发现官方优化指南</h4><p>​        刚刚发现官方早就发布了鲲鹏920优化指南，怪不得那么多人短时间冲到前排，但我暂时没什么动力继续改那段shit一样的代码了，先放放吧，估计10天后结束就要掉出100名以外了。</p>
+<p>———————</p>
+<p>2020年3月24日</p>
+<h4 id="阶段7多线程预测计算"><a href="#阶段7：多线程预测计算" class="headerlink" title="阶段7：多线程预测计算"></a>阶段7：多线程预测计算</h4><pre><code>分数0.15  精度70%  数据规模1/50
+</code></pre><p>​        突然想起自己预测计算还是单线程，于是在多线程读文件同时完成计算，速度果然提高4倍，效果显著。</p>
+<p>​        三天未优化，今早一看掉到98名，这下又能暂时勉强进入50了。</p>
+<h4 id="阶段8弃疗"><a href="#阶段8：弃疗" class="headerlink" title="阶段8：弃疗"></a>阶段8：弃疗</h4><pre><code>未继续优化 ， 结束排名100整，，有的大佬开源了代码，没有细看，不过有的用了一些trick的手段。
+</code></pre><h1 id="初赛"><a href="#初赛" class="headerlink" title="初赛"></a>初赛</h1><p>2020年3月31日 </p>
+<p>赛题发布，其实就是有向图找环，并按一定顺序输出，感觉之前刷过类似的题。</p>
+<p>代码写完，本地数据只有5000且范围小，拓扑排序还是可以的，不知道到时候线上28w的数据该怎么处理，而且ID范围是32位的整数，似乎没有这么大的空间构建矩阵向量，算了不管了。</p>
+<p>弃疗</p>
 
                 
 
@@ -218,13 +250,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/09/24/Effective-C-学习笔记/" data-toggle="tooltip" data-placement="top" title="Effective C++学习笔记">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/09/05/C-Primer学习笔记/" data-toggle="tooltip" data-placement="top" title="C++Primer学习笔记">Next Post &rarr;</a>
+                            <a href="/2020/03/09/机器学习/" data-toggle="tooltip" data-placement="top" title="机器学习">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -250,7 +278,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#某网盘下载"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">某网盘下载</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#热身赛"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">热身赛</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段0阅读示例代码xjb调参"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">阶段0：阅读示例代码，xjb调参</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段1梯度下降-gt随机梯度下降sgd"><span class="toc-nav-number">1.0.0.2.</span> <span class="toc-nav-text">阶段1：梯度下降  — &gt;随机梯度下降SGD</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段2io流-gt内存映射"><span class="toc-nav-number">1.0.0.3.</span> <span class="toc-nav-text">阶段2：IO流  — &gt;内存映射</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段3训练单线程io-gt多线程io"><span class="toc-nav-number">1.0.0.4.</span> <span class="toc-nav-text">阶段3：训练单线程IO — &gt;多线程IO</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段4预测单线程io-gt多线程io"><span class="toc-nav-number">1.0.0.5.</span> <span class="toc-nav-text">阶段4：预测单线程IO — &gt;多线程IO</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段5优化string-to-double"><span class="toc-nav-number">1.0.0.6.</span> <span class="toc-nav-text">阶段5：优化string to double</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段6发现官方优化指南"><span class="toc-nav-number">1.0.0.7.</span> <span class="toc-nav-text">阶段6：发现官方优化指南</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段7多线程预测计算"><span class="toc-nav-number">1.0.0.8.</span> <span class="toc-nav-text">阶段7：多线程预测计算</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阶段8弃疗"><span class="toc-nav-number">1.0.0.9.</span> <span class="toc-nav-text">阶段8：弃疗</span></a></li></ol></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#初赛"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">初赛</span></a></li>
         
         </div>
       </aside>
@@ -270,8 +298,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#杂七杂八" title="杂七杂八">杂七杂八</a>
-                        
                     </div>
                 </section>
                 

@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          杂七杂八 - Blog of xzdDong
+          机器学习 - Blog of xzdDong
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2019/09/18/杂七杂八/">
+    <link rel="canonical" href="http://yoursite.com/2020/03/09/机器学习/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,14 +86,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#杂七杂八" title="杂七杂八">杂七杂八</a>
-                            
                         </div>
-                        <h1>杂七杂八</h1>
+                        <h1>机器学习</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by xzdDong on
-                            2019-09-18
+                            2020-03-09
                         </span>
                     </div>
                 
@@ -210,7 +208,17 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="某网盘下载"><a href="#某网盘下载" class="headerlink" title="某网盘下载"></a>某网盘下载</h2><p>在一级域名后加上wp即可</p>
+                <p># </p>
+<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p>顾名思义，这是一种工程，基于工程经验方法进行数据预处理的过程。</p>
+<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>参考<a href="https://blog.csdn.net/weixin_39445556/article/details/83930186" target="_blank" rel="noopener">博客</a></p>
+<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>其实与高中所讲基本类似，只不过高中线性回归限制在平面空间，而实际其可以包括多维度，从而计算上就变为矩阵运算。</p>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>用来表示预测模型与实际的误差的函数，一般需要求得这个函数的最小值，那么我们才有可能取得较好的模型，所以本质上我们就需要找到合适的损失函数求极小值。</p>
+<h2 id="二分类"><a href="#二分类" class="headerlink" title="二分类"></a>二分类</h2><p>对于二分类问题，我们需要将值限制在0,1两个值上，简单考虑我们可以使用一个分段函数来强行转换，比如单位阶跃函数，但如此得到的结果是不准确的，因为假如训练样本中出现较大差异的值，那么线性回归后的判断阈值就会受到影响，这就是离群值对结果影响较大。</p>
+<p>因此逻辑回归选用sigmod函数，是一个较为平滑的函数，关于选用原因<a href="https://blog.csdn.net/qq_19645269/article/details/79551576" target="_blank" rel="noopener">https://blog.csdn.net/qq_19645269/article/details/79551576</a></p>
+<h2 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h2><p>梯度下降</p>
+<p>共轭梯度</p>
+<p>BFGS</p>
+<p>L-BFGS</p>
 
                 
 
@@ -219,12 +227,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/09/24/Effective-C-学习笔记/" data-toggle="tooltip" data-placement="top" title="Effective C++学习笔记">&larr; Previous Post</a>
+                            <a href="/2020/03/16/2020华为软挑参赛日志/" data-toggle="tooltip" data-placement="top" title="2020华为软挑">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/09/05/C-Primer学习笔记/" data-toggle="tooltip" data-placement="top" title="C++Primer学习笔记">Next Post &rarr;</a>
+                            <a href="/2019/11/21/关于原码、反码和补码的正确理解/" data-toggle="tooltip" data-placement="top" title="关于原码、反码和补码的正确理解">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -250,7 +258,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#某网盘下载"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">某网盘下载</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#特征工程"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">特征工程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#逻辑回归"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">逻辑回归</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#线性回归"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">线性回归</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#损失函数"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">损失函数</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#二分类"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">二分类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#求解方法"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">求解方法</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -270,8 +278,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#杂七杂八" title="杂七杂八">杂七杂八</a>
-                        
                     </div>
                 </section>
                 
